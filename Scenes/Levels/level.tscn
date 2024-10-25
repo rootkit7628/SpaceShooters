@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dre5fqlhvu4n1"]
+
+[ext_resource type="PackedScene" uid="uid://dok0gn8j2xe5w" path="res://Scenes/Player/player.tscn" id="1_fk7f6"]
+[ext_resource type="Script" path="res://Scenes/Levels/Scripts/projectile_factory.gd" id="2_rt4ac"]
+
+[node name="Level" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_fk7f6")]
+
+[node name="ProjectileFactory" type="Node2D" parent="."]
+script = ExtResource("2_rt4ac")
+
+[connection signal="projectile_fired" from="Player" to="ProjectileFactory" method="spawn_projectile"]
