@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @export_range(0.0, 1.0) var ACCEL_FACTOR: float = 0.1
 @export_range(0.0, 1.0) var ROTATION_ACCEL_FACTOR: float = 0.1
@@ -9,7 +10,7 @@ var MAX_SPEED : float = 200.0
 var DIRECTION : Vector2 = Vector2.ZERO 
 var LAST_DIRECTION : Vector2 = Vector2.ZERO
 
-signal projectile_fired(PROJECTIE)
+signal projectile_fired(PROJECTILE)
 
 
 func _ready() -> void:
@@ -41,6 +42,9 @@ func player_rotate() -> void:
 	var mouse_pos = get_global_mouse_position()
 	var angle = global_position.angle_to_point(mouse_pos)
 	rotation = lerp_angle(rotation, angle, ROTATION_ACCEL_FACTOR)
+
+func destroy() -> void:
+	queue_free()
 
 func fire() -> void:
 	var projectile = PROJECTILE_SCENE.instantiate()
